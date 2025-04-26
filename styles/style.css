@@ -95,7 +95,9 @@ fill: #58A4B0;
 }
 
 #add-now {
+    display: flex;
     fill: #58A4B0;
+    
 }
 
 #remove-bk {
@@ -140,7 +142,14 @@ label {
 .submit-sect {
     display: flex;
     justify-content: flex-end;
-    padding-top: 8px;
+    
+}
+
+#submit {
+    display: flex;
+    background-color: transparent;
+    border-style: none;
+    display: inline-block;
 }
 
 input {
@@ -151,6 +160,7 @@ input {
 
 input:invalid {
     border-color: #B53434;
+    border-width: 4px;
 }
 
 input:focus {

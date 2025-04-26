@@ -73,6 +73,7 @@ console.log(myLibrary);
     //const bookPlaceholder = document.querySelector(".bk-placeholder");
     const visibleBooks = document.querySelector("#visible-books");
     visibleBooks.innerHTML = ""; // clear previous books
+    
 
     for (let i = 0; i < myLibrary.length; i++) { // loop works
        
@@ -213,40 +214,93 @@ removeBkButton.setAttribute("width", "50px");
 
  
 
-  const formEl = popUp.querySelector("form");
- // const inputEl = popUp.querySelectorAll("input");
-  const title = document.getElementById("#popup #bk-title");
-  const author = document.getElementById("#popup #bk-author");
-  const pages = document.getElementById("#popup #bk-pgs");
-  const read = document.getElementById("#popup #bk-read");
+  let formEl = document.querySelector(".form");
+ let inputEl = popUp.querySelectorAll("input");
+  const title = document.getElementById("bk-title").value;
+  const author = document.getElementById("bk-author").value;
+  const pages = document.getElementById("bk-pgs").value;
+  const read = document.getElementById("bk-read").value;
 
   
 
 
-  dialog.addEventListener("close", (e) => {
-    formEl.value =
-      dialog.returnValue === "default"
-        ? "No return value."
-       : `ReturnValue: ${dialog.returnValue}.`; // Have to check for "default" rather than empty string
-  });
+//  dialog.addEventListener("close", (e) => {
+  //  formEl.value =
+  //    dialog.returnValue === "default"
+ //       ? "No return value."
+ //      : `ReturnValue: ${dialog.returnValue}.`; // Have to check for "default" rather than empty string
+ // });
 
 
-  const confirmBtn = document.querySelector("#add-now");
+  const confirmBtn = document.getElementById("submit");
 
-  confirmBtn.addEventListener('click', (e) => {
+  confirmBtn.addEventListener('submit', (e) => {
 
     e.preventDefault(); // We don't want to submit this fake form
+
+  //  const formData = new FormData(formEl);
+
+   // formData.get('bk-title');
+   // formData.get('bk-author');
+   // formData.get('bk-pgs');
+   // formData.get('bk-read');
+
+    validateForm();
+
+
+
 // add new book to library
  addBookToLibrary(title, author, pages, read);
+
+ console.log(addBookToLibrary(title, author, pages, read));
+//addBookNow(title, author, pages, read);
 
 // refesh display to show book
 displayBook();
 
 //reset form after submission
-formEl.reset();
+//formEl.reset();
 
 
     dialog.close(); // Have to send the form value here.
 
 
   });
+
+
+  function validateForm() {
+    let title = document.forms["form"]["bk-title"].value;
+    let author = document.forms["form"]["bk-author"].value;
+    let pages = document.forms["form"]["bk-pgs"].value;
+    let read = document.forms["form"]["bk-read"].value;
+
+
+    if(pages != ""){
+      pages = parseFloat(pages);
+      if(isNaN(pages)){
+        console.log("Not a number");
+      }
+    }
+
+    
+// let inputValue = inputEl.value.trim(); // inputEL value is always undefined
+ //   if (inputValue === "") {
+  //    console.log("Input is empty or contains only whitespace");
+  //  }
+
+
+    if (title === "" || author === "" || pages === "" || read === "") {
+      alert("Field must be filled out");
+      return false;
+    }
+    return true;
+  }
+
+
+ // function addBookNow(title, author, pages, read) {
+
+  //  const book = new Book(title, author, pages, read);
+ // myLibrary.push(book);
+ // return book;
+
+ // }

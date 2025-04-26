@@ -1,0 +1,145 @@
+body {
+height: 100vh;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+color: #2B303A;
+margin: 0px;
+padding: 0px;
+}
+
+#container {
+    display: grid;
+    width: 100vw;
+    margin: 0px;
+    padding: 0px;
+}
+
+#header {
+
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+background-color: #58A4B0;
+align-items: center;
+color: #053C5E;
+}
+
+.logo {
+    grid-column: 1 / 2;
+    fill: #053C5E;
+}
+
+h1 {
+    grid-column: 2 / 4;
+    letter-spacing: 0.2rem;
+    font-family: 'Courier New', Courier, monospace;
+    margin-left: -17%;
+}
+
+#main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 10px;
+
+}
+
+
+#visible-books {
+
+    display: grid;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 150px;
+    padding-right: 150px;
+    justify-content: center;
+}
+
+.bk-placeholder {
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    border-left-color: #FFAE03;
+    border-left-width: 6px;
+    border-left-style: solid;
+    border-top-color: #2B303A;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-right-color: #2B303A;
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #2B303A;
+    height: 200px;
+    width: 200px;
+    border-radius: 8px;
+    padding: 2px;
+}
+
+.add-delete {
+    grid-row: 4 / 5;
+    grid-column: 3 / 5;
+    display: flex;
+    margin-bottom: -10px;
+}
+
+#add-bk {
+    
+fill: #58A4B0;
+
+}
+
+#remove-bk {
+    
+    fill: #B53434;
+  
+}
+
+#popup {
+    display: flex;
+    font-size: small;
+    flex-direction: column;
+    row-gap: 10px;
+    background-color: #FFAE03;
+    padding: 20px;
+    border-radius: 8px;
+    border-style: none;
+    width: 250px;
+}
+
+.title-sect, .author-sect, .pgs-sect, .read-sect {
+    display: flex;
+    flex-direction: column;
+}
+
+.title-sect label, .author-sect label, .pgs-sect label, .read-sect label {
+    font-weight: bold;
+}
+
+.submit-sect {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 8px;
+}
+
+input {
+    border-color: #2B303A;
+    border-width: 1px;
+    border-style: solid;
+}
+
+input:invalid {
+    border-color: #B53434;
+}
+
+input:focus {
+    outline: none;
+    border-color: #053C5E;
+}
+
+#footer {
+    background-color: #053C5E;
+    color: white;
+    font-weight: bold;
+    padding: 20px;
+    text-align: center;
+}

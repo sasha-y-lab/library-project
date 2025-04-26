@@ -44,15 +44,19 @@ h1 {
 
 
 #visible-books {
-
-    display: grid;
-    padding-top: 50px;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 20px;
+padding-top: 50px;
     padding-bottom: 50px;
+   /* display: grid;
+    
     padding-left: 150px;
     padding-right: 150px;
-    justify-content: center;
+    justify-content: center; */
 }
 
+/*
 .bk-placeholder {
     display: grid;
     grid-template-rows: repeat(4, 1fr);
@@ -73,14 +77,16 @@ h1 {
     width: 200px;
     border-radius: 8px;
     padding: 2px;
-}
+} */
 
+/*
 .add-delete {
     grid-row: 4 / 5;
     grid-column: 3 / 5;
     display: flex;
     margin-bottom: -10px;
-}
+} */
+
 
 #add-bk {
     

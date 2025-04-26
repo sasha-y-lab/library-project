@@ -16,11 +16,11 @@ function Book(title, author, pages, read) { // constructor
     this.pages = pages;
     this.read = read;
     this.id = crypto.randomUUID();
-    this.createBook = function() {
-      console.log(this.title + ",", this.author + ",", this.id + ",", this.pages + ",", this.read)
-      // return this.createBook(); creates too much in a endless loop
-    };
-  return this.createBook();
+   // this.createBook = function() {
+   //   console.log(this.title + ",", this.author + ",", this.id + ",", this.pages + ",", this.read)
+  //    // return this.createBook(); creates too much in a endless loop
+  //  };
+ // return this.createBook();
   
   }
 
@@ -54,7 +54,7 @@ console.log(myLibrary);
 
   }
 
-  addBookToLibrary();
+ // addBookToLibrary(); // this was adding the undefined book
 
   // i think this is right?
 
@@ -72,10 +72,11 @@ console.log(myLibrary);
    
     //const bookPlaceholder = document.querySelector(".bk-placeholder");
     const visibleBooks = document.querySelector("#visible-books");
-
+    visibleBooks.innerHTML = ""; // clear previous books
 
     for (let i = 0; i < myLibrary.length; i++) { // loop works
        
+      
         const bookPlaceholder = document.createElement("div");
         bookPlaceholder.classList.add(".bk-placeholder");
 
@@ -213,54 +214,39 @@ removeBkButton.setAttribute("width", "50px");
  
 
   const formEl = popUp.querySelector("form");
-  const inputEl = popUp.querySelectorAll("input");
-  const titleInput = popUp.querySelector("input .bk-title");
-  const authInput = popUp.querySelector("input .bk-author");
-  const pgsInput = popUp.querySelector("input .bk-pgs");
-  const readInput = popUp.querySelector("input .bk-read");
+ // const inputEl = popUp.querySelectorAll("input");
+  const title = document.getElementById("#popup #bk-title");
+  const author = document.getElementById("#popup #bk-author");
+  const pages = document.getElementById("#popup #bk-pgs");
+  const read = document.getElementById("#popup #bk-read");
 
-  const details = [titleInput, authInput, pgsInput, readInput];
+  
 
 
-//  dialog.addEventListener("close", (e) => {
- //   formEl.value =
- //     dialog.returnValue === "default"
- //       ? "No return value."
- //       : `ReturnValue: ${dialog.returnValue}.`; // Have to check for "default" rather than empty string
- // });
+  dialog.addEventListener("close", (e) => {
+    formEl.value =
+      dialog.returnValue === "default"
+        ? "No return value."
+       : `ReturnValue: ${dialog.returnValue}.`; // Have to check for "default" rather than empty string
+  });
 
 
   const confirmBtn = document.querySelector("#add-now");
 
-  confirmBtn.addEventListener("click", (e) => {
+  confirmBtn.addEventListener('click', (e) => {
 
     e.preventDefault(); // We don't want to submit this fake form
-    dialog.close(details); // Have to send the form value here.
-//for (let j = 0; j < inputEl.length; j++) {
- 
-//const element = inputEl;
+// add new book to library
+ addBookToLibrary(title, author, pages, read);
 
-if (inputEl === "INPUT" && inputEl.type === "text") {
- 
-  
-  myLibrary.push(details);
-  
-  
-}
+// refesh display to show book
+displayBook();
+
+//reset form after submission
+formEl.reset();
 
 
+    dialog.close(); // Have to send the form value here.
 
-console.log(myLibrary);
-
-//}
-
-
-
-    
-   // console.log(inputEl); // the actual obejects
-    //console.log(inputEl.value); //undefined
-    
-    
-    
 
   });

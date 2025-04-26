@@ -216,10 +216,10 @@ removeBkButton.setAttribute("width", "50px");
 
   const formEl = document.querySelector(".form");
  let inputEl = popUp.querySelectorAll("input");
-  const title = document.getElementById("bk-title").value;
-  const author = document.getElementById("bk-author").value;
-  const pages = document.getElementById("bk-pgs").value;
-  const read = document.getElementById("bk-read").value;
+  //const title = document.getElementById("bk-title").value;
+ // const author = document.getElementById("bk-author").value;
+  //const pages = document.getElementById("bk-pgs").value;
+  //const read = document.getElementById("bk-read").value;
 
   
 
@@ -238,12 +238,19 @@ removeBkButton.setAttribute("width", "50px");
 
     e.preventDefault(); // We don't want to submit this fake form
 
-  //  const formData = new FormData(formEl);
+    const formData = new FormData(formEl);
+    console.log(...formData);
 
-   // formData.get('bk-title');
-   // formData.get('bk-author');
-   // formData.get('bk-pgs');
-   // formData.get('bk-read');
+
+   //console.log(formData.get('bk-title'));
+   //console.log(formData.get('bk-author'));
+  // console.log(formData.get('bk-pgs'));
+  // console.log(formData.get('bk-read'));
+
+   const title = formData.get('bk-title');
+   const author = formData.get('bk-author');
+   const pages = formData.get('bk-pgs');
+   const read = formData.get('bk-read');
 
     validateForm();
 
@@ -252,11 +259,11 @@ removeBkButton.setAttribute("width", "50px");
 // add new book to library
  addBookToLibrary(title, author, pages, read);
 
- console.log(addBookToLibrary(title, author, pages, read));
+ //console.log(addBookToLibrary(title, author, pages, read)); // this made it run twice
 //addBookNow(title, author, pages, read);
 
 // refesh display to show book
-displayBook();
+displayBook(); // needed to show up
 
 //reset form after submission
 //formEl.reset();

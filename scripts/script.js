@@ -214,7 +214,7 @@ removeBkButton.setAttribute("width", "50px");
 
  
 
-  let formEl = document.querySelector(".form");
+  const formEl = document.querySelector(".form");
  let inputEl = popUp.querySelectorAll("input");
   const title = document.getElementById("bk-title").value;
   const author = document.getElementById("bk-author").value;
@@ -232,9 +232,9 @@ removeBkButton.setAttribute("width", "50px");
  // });
 
 
-  const confirmBtn = document.getElementById("submit");
+  //const confirmBtn = document.getElementById("#submit"); // probably wasn't working as only a form can have a submit event listener
 
-  confirmBtn.addEventListener('submit', (e) => {
+  formEl.addEventListener('submit', (e) => {
 
     e.preventDefault(); // We don't want to submit this fake form
 

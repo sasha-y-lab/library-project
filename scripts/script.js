@@ -79,6 +79,11 @@ console.log(myLibrary);
         const bookPlaceholder = document.createElement("div");
         bookPlaceholder.classList.add(".bk-placeholder");
 
+       // bookPlaceholder.dataset.title;
+      //  bookPlaceholder.dataset.author;
+      //  bookPlaceholder.dataset.pages;
+     //  bookPlaceholder.dataset.read;
+
     bookPlaceholder.style.display = "flex";
     bookPlaceholder.style.flexDirection = "column";
    // bookPlaceholder.style.alignItems = "center";
@@ -183,3 +188,79 @@ removeBkButton.setAttribute("width", "50px");
   }
 
   displayBook();
+
+
+  //Add a “New Book” button that brings up a form allowing users to input the 
+  // details for the new book and add it to the library.
+
+ 
+ const dialog = document.querySelector("dialog");
+
+ const popUp = document.querySelector("#popup");
+
+  const addBkButtonUpdate = document.querySelectorAll("#add-bk");
+
+  addBkButtonUpdate.forEach(addbutton => {
+
+    addbutton.addEventListener("click", () => {
+
+      dialog.showModal();
+  
+    });
+
+  });
+
+ 
+
+  const formEl = popUp.querySelector("form");
+  const inputEl = popUp.querySelectorAll("input");
+  const titleInput = popUp.querySelector("input .bk-title");
+  const authInput = popUp.querySelector("input .bk-author");
+  const pgsInput = popUp.querySelector("input .bk-pgs");
+  const readInput = popUp.querySelector("input .bk-read");
+
+  const details = [titleInput, authInput, pgsInput, readInput];
+
+
+//  dialog.addEventListener("close", (e) => {
+ //   formEl.value =
+ //     dialog.returnValue === "default"
+ //       ? "No return value."
+ //       : `ReturnValue: ${dialog.returnValue}.`; // Have to check for "default" rather than empty string
+ // });
+
+
+  const confirmBtn = document.querySelector("#add-now");
+
+  confirmBtn.addEventListener("click", (e) => {
+
+    e.preventDefault(); // We don't want to submit this fake form
+    dialog.close(details); // Have to send the form value here.
+//for (let j = 0; j < inputEl.length; j++) {
+ 
+//const element = inputEl;
+
+if (inputEl === "INPUT" && inputEl.type === "text") {
+ 
+  
+  myLibrary.push(details);
+  
+  
+}
+
+
+
+console.log(myLibrary);
+
+//}
+
+
+
+    
+   // console.log(inputEl); // the actual obejects
+    //console.log(inputEl.value); //undefined
+    
+    
+    
+
+  });

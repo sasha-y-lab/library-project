@@ -94,17 +94,26 @@ fill: #58A4B0;
 
 }
 
+#add-now {
+    fill: #58A4B0;
+}
+
 #remove-bk {
     
     fill: #B53434;
   
 }
 
+dialog {
+    border-radius: 8px;
+    padding: 0px;
+    border-style: none;
+}
+
 #popup {
     display: flex;
     font-size: small;
     flex-direction: column;
-    row-gap: 10px;
     background-color: #FFAE03;
     padding: 20px;
     border-radius: 8px;
@@ -112,13 +121,20 @@ fill: #58A4B0;
     width: 250px;
 }
 
+form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
 .title-sect, .author-sect, .pgs-sect, .read-sect {
     display: flex;
     flex-direction: column;
 }
 
-.title-sect label, .author-sect label, .pgs-sect label, .read-sect label {
+label {
     font-weight: bold;
+    padding-bottom: 10px;
 }
 
 .submit-sect {

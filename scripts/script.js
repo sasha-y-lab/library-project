@@ -169,6 +169,8 @@ console.log(bookTxt);
         const addBkButton = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         addBkButton.setAttribute("id", "add-bk");
 
+        addBkButton.onclick = function () { dialog.showModal(); };
+
         addBkButton.setAttribute('viewBox', '0 0 24 24');
 
         addBkButton.setAttribute("style", "cursor:pointer;");
@@ -223,19 +225,31 @@ removeBkButton.setAttribute("width", "50px");
 
  const popUp = document.querySelector("#popup");
 
-  const addBkButtonUpdate = document.querySelectorAll("#add-bk");
+ /* 
+ 
+ const addBkButtonUpdate = document.querySelectorAll("#add-bk");
 
   addBkButtonUpdate.forEach(addbutton => {
 
     addbutton.addEventListener("click", () => {
 
-      dialog.showModal();
+        dialog.showModal();
+
+
   
     });
 
   });
-
+*/
  
+/*
+function click2Add() {
+
+  dialog.showModal();
+
+}
+  */
+
 
   const formEl = document.querySelector(".form");
  let inputEl = popUp.querySelectorAll("input");
@@ -289,7 +303,7 @@ removeBkButton.setAttribute("width", "50px");
 displayBook(); // needed to show up
 
 //reset form after submission
-//formEl.reset();
+formEl.reset();
 
 
     dialog.close(); // Have to send the form value here.

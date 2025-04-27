@@ -105,21 +105,63 @@ console.log(myLibrary);
         bookPlaceholder.classList.add(".bk-placeholder");
         //const newBook = new Book(title, author, pages, read, id);
 
-       // for (let k = 0; k < myLibrary.length; k ++) {
+      
+      //  let allBooks = document.querySelectorAll(".bk-placeholder");
 
-          const bookID = myLibrary[i].id;
+        
+
+        
+
+          let bookID = myLibrary[i].id;
          
          console.log(bookID);
          
          bookPlaceholder.setAttribute("data-id", `${bookID}`);
 
-        // }
+
+
+         let bkIndex2Del = bookPlaceholder.dataset.id;
+
+
+         
+         console.log(bkIndex2Del);
+
+
+        //bookID = bkIndex2Del;
+
+         //bkIndex2Del = bookID;
+
+         /*
+         console.log(bookID = bkIndex2Del);
+          console.log(bkIndex2Del = bookID);
+          console.log(bookID);
+          console.log(bkIndex2Del);
+*/
+
+
+      /*   
+        
+        allBooks.forEach(allBook => { 
+        
+          allBook.addEventListener("mouseover", (e) => {
+            console.log(e.target);
+
+          if (bkIndex2Del === bookID) {
+            e.target.display = "none";
+          }
+
+          });
+
+        });
+
+        */
 
         
-
-
-
+        
         console.log(myLibrary);
+
+        
+        
         /*
         function BookIdent(bookID) {
           this.id = crypto.randomUUID();
@@ -263,13 +305,119 @@ console.log(bookTxt);
         const removeBkButton = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         removeBkButton.setAttribute("id", "remove-bk");
           
+        removeBkButton.setAttribute("data-id", `${bookID}`);
+
+        const rmvBookIDBtn = removeBkButton.dataset.id;
+
+        console.log(rmvBookIDBtn);
+        
+
+        
+
+          
+         
+
         removeBkButton.onclick = function () { 
 
-         // deleteBook();
+        // the index needs to be equal to the correct book card that is clicked!
+
+
+      //  const allbookCards = document.querySelectorAll(".bk-placeholder");
+       
+        //allbookCards.forEach(allbookCard => {
+
+
+  
+
+
+  const index = [...Array.from(bookPlaceholder.parentElement.children)].indexOf(bookPlaceholder); //myLibrary.indexOf(allbookCards) = -1; // allbookCards.length = 0
+
+  console.log(index); // - 1 for rmvBookIDBtn & bookPlaceholder & allbookCards
+
+
+  //if (index === -1 && rmvBookIDBtn === bookID) {
+
+  //myLibrary.splice(index, 1);
+
+
+//});
+          
 
          
 
-          const bkIndex2Del = bookPlaceholder.dataset.id;
+
+     // for (k = 0; k < myLibrary.length - 1; k++) {
+/*
+        const bookValues = myLibrary.filter(function (el) {
+         
+         console.log(el.id); // lists all book IDs
+          return el.id; //= bkIndex2Del //&&
+                // el.sqft >= 500 &&
+                 //el.num_of_beds >=2 &&
+                // el.num_of_baths >= 2.5;
+        });
+
+        console.log(bookValues); // prints array
+        console.log(bookValues.bkIndex2Del);
+
+       let indexOfBook = bookValues.length;
+
+        console.log(indexOfBook);
+        */
+
+//}
+
+
+          // if (index !== -1) {
+
+          //  myLibrary.splice(index, 1);
+           
+         //  }
+          
+
+          
+
+         //if bookplaceholder is selected itself, remove the corresponding id
+
+         
+         
+
+          
+         
+                  
+       
+
+        
+          
+
+       // book.focus({ focusVisible: false });
+
+        
+
+         
+
+            
+          
+
+
+
+/*
+         book.addEventListener('focus', () => {
+          console.log('Element received focus');
+
+           console.log(bkIndex2Del);
+           if (bkIndex2Del === bookID) {
+
+            myLibrary.splice(bkIndex2Del, 1);
+          }
+
+        }); // focus listener
+*/
+      
+    
+
+          
+        
 
          // const bkIndex2Del = myLibrary.findIndex(addBookToLibrary, title);
 
@@ -278,8 +426,9 @@ console.log(bookTxt);
 
         // });
 
-         console.log(bkIndex2Del);
-         myLibrary.splice(bkIndex2Del, 1);
+         
+
+        
 
        // let indexBk = myLibrary.indexOf(BookIdent.prototype.bind(bookID)); //BookIdent()
         //console.log(Book.prototype.bind(title)); //BookIdent()
@@ -309,6 +458,13 @@ console.log(bookTxt);
           displayBook();
 
         };
+
+      
+
+  
+     
+
+      
         
 
 removeBkButton.setAttribute('viewBox', '0 0 24 24');
@@ -462,51 +618,14 @@ formEl.reset();
   }
 
 
- /* 
- function deleteBook () {
+ 
+ //function deleteBook () {
 
-  console.log(myLibrary.id);
-
-  const bkIndex2Del = myLibrary.findIndex((value, index, arr) => { 
-    // Without the arr argument, there's no way to easily access the
-    // intermediate array without saving it to a variable.
-    console.log(value.id);
-
-    console.log(arr.length);
-
-   for (let r = 0; r < arr.length - 1; r++) {
-let bookID = value.id;
-console.log(bookID);
-
-
-//const rmvBooks = document.querySelectorAll("#remove-bk");
-// `${string}-${string}-${string}-${string}-${string}` //crypto string
-
-if (index > 0 && value >= arr[index - 1]) return false;
-    if (index < arr.length - 1 && value >= arr[index + 1]) return false;
-    return true;
-
-   }
-
-
-
-   // if (index > 0 && id >= arr[index - 1]) return false;
-   // if (index < arr.length - 1 && id >= arr[index + 1]) return false;
-   // return true;
-
-    
-  });
-
- // displayBook();
- const rmvBooks = document.querySelectorAll("#remove-bk");
-if (rmvBooks.clicked)
-
-  console.log(bkIndex2Del);
   
-  myLibrary.splice(bkIndex2Del, 1);
+      //myLibrary.splice(bookID, 1);
 
-  console.log(myLibrary);
 
- }
- */
 
+//}
+
+//deleteBook();

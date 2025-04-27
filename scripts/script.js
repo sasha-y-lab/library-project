@@ -3,9 +3,12 @@
 //  all of your book objects should have a unique id, which can be 
 // generated using crypto.randomUUID()
 
-//let bookID = crypto.randomUUID();
+//let id = crypto.randomUUID();
 
-const myLibrary = [{title: "The Babysitters Club", author: "Unknown Author", pages: "233", read: "Not Read"}, {title: "Blues Brothers", author: "Unknown Author", pages: "1000", read: "Not Read"}, {title: "The Jungle Book", author: "Unknown Author", pages: "30", read: "Not Read"}];
+
+//let bookID = "";
+
+const myLibrary = [{title: "The Babysitters Club", author: "Unknown Author", pages: "233", read: "Not Read", id: `${crypto.randomUUID()}`}, {title: "Blues Brothers", author: "Unknown Author", pages: "1000", read: "Not Read", id: `${crypto.randomUUID()}`}, {title: "The Jungle Book", author: "Unknown Author", pages: "30", read: "Not Read", id: `${crypto.randomUUID()}`}];
 
 function Book(title, author, pages, read) { // constructor
     if (!new.target) {
@@ -16,21 +19,34 @@ function Book(title, author, pages, read) { // constructor
     this.author = author;
     this.pages = pages;
     this.read = read;
+    this.id = crypto.randomUUID();
    // this.id = bookID;
    // this.createBook = function() {
    //   console.log(this.title + ",", this.author + ",", this.id + ",", this.pages + ",", this.read)
   //    // return this.createBook(); creates too much in a endless loop
   //  };
  // return this.createBook();
-
-
  
- 
- //return bookID;
+ // id = this.id;
+
+ //return id;
 
   }
-
   
+  
+  // create book prototype
+/*
+  Book.prototype.bookID = function () {
+
+    const bookCards = document.querySelectorAll("[data-id]");
+
+
+  bookCards.forEach(bookCard => {
+ 
+  });
+
+  }
+  */
 
   
 
@@ -80,16 +96,72 @@ console.log(myLibrary);
     const visibleBooks = document.querySelector("#visible-books");
     visibleBooks.innerHTML = ""; // clear previous books
     
+    
 
     for (let i = 0; i < myLibrary.length; i++) { // loop works
        
       
         const bookPlaceholder = document.createElement("div");
         bookPlaceholder.classList.add(".bk-placeholder");
-        bookPlaceholder.setAttribute("data-id", "");
+        //const newBook = new Book(title, author, pages, read, id);
 
-        bookPlaceholder.dataset.id = crypto.randomUUID(); //bookID
+       // for (let k = 0; k < myLibrary.length; k ++) {
+
+          const bookID = myLibrary[i].id;
+         
+         console.log(bookID);
+         
+         bookPlaceholder.setAttribute("data-id", `${bookID}`);
+
+        // }
+
+        
+
+
+
+        console.log(myLibrary);
+        /*
+        function BookIdent(bookID) {
+          this.id = crypto.randomUUID();
+          bookID = this.id;
+          this.title = "";
+          let datasetIDs = document.querySelectorAll("[data-id]");
+
+          datasetIDs.forEach(datasetID => {
+            datasetID = bookID;
+            bookID = datasetID;
+
+            console.log(bookID);
+            return bookID;
+          });
+          
+
+        }
+
+        */
+
+        /*
+
+      //  BookIdent.prototype.sayID = function() {
+
+          Book.prototype.sayID = function() {
+          console.log(`Hello, ${this.title} has ${this.id}.`);
+          
+        };
+
+        Object.setPrototypeOf(Book.prototype, Book.prototype.sayID);
+Object.getPrototypeOf(Book.prototype); // returns BookIdent.prototype
+
+*/
+
+
+       // const bookID = bookPlaceholder.dataset.id; //crypto.randomUUID()
         console.log(bookPlaceholder.dataset.id);
+       // if (bookID == )
+//console.log(this.id);
+        //bookID = bookPlaceholder.dataset.id;
+
+        
         
        // for (const key in bookPlaceholder.dataset.id) {
        //   if (bookPlaceholder.dataset.id.hasOwnProperty(key)) {
@@ -190,6 +262,55 @@ console.log(bookTxt);
 
         const removeBkButton = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         removeBkButton.setAttribute("id", "remove-bk");
+          
+        removeBkButton.onclick = function () { 
+
+         // deleteBook();
+
+         
+
+          const bkIndex2Del = bookPlaceholder.dataset.id;
+
+         // const bkIndex2Del = myLibrary.findIndex(addBookToLibrary, title);
+
+        // myLibrary.findIndex((value) => value () { 
+          
+
+        // });
+
+         console.log(bkIndex2Del);
+         myLibrary.splice(bkIndex2Del, 1);
+
+       // let indexBk = myLibrary.indexOf(BookIdent.prototype.bind(bookID)); //BookIdent()
+        //console.log(Book.prototype.bind(title)); //BookIdent()
+
+
+        //console.log(indexBk);
+
+        /*
+        myLibrary.forEach((value) => {
+          let bookID = value.id;
+
+          console.log(bookID);
+
+          if (bkIndex2Del === bookID) {
+
+            myLibrary.splice(bkIndex2Del, 1);
+          }
+        });
+
+        */
+
+        
+
+         
+
+          //console.log(myLibrary);
+          displayBook();
+
+        };
+        
+
 removeBkButton.setAttribute('viewBox', '0 0 24 24');
 removeBkButton.setAttribute("style", "cursor:pointer;");
 removeBkButton.setAttribute("height", "50px");
@@ -341,33 +462,51 @@ formEl.reset();
   }
 
 
-  /*
- const deleteByIDs = document.querySelectorAll("[data-id]");
+ /* 
+ function deleteBook () {
 
-  deleteByIDs.forEach(deleteByID => {
+  console.log(myLibrary.id);
 
-const deleteBookNow = document.querySelector("#remove-bk");
+  const bkIndex2Del = myLibrary.findIndex((value, index, arr) => { 
+    // Without the arr argument, there's no way to easily access the
+    // intermediate array without saving it to a variable.
+    console.log(value.id);
 
-deleteBookNow.addEventListener("click", () => {
+    console.log(arr.length);
 
-  //for (let r = 0; r < myLibrary.length; r++) {
-  
+   for (let r = 0; r < arr.length - 1; r++) {
+let bookID = value.id;
+console.log(bookID);
 
-if (deleteBookNow.onclick) {
 
-  console.log(deleteBookNow.onclick);
+//const rmvBooks = document.querySelectorAll("#remove-bk");
+// `${string}-${string}-${string}-${string}-${string}` //crypto string
 
-  myLibrary.splice(deleteByID, 1);
-  console.log(myLibrary);
-}
+if (index > 0 && value >= arr[index - 1]) return false;
+    if (index < arr.length - 1 && value >= arr[index + 1]) return false;
+    return true;
 
+   }
+
+
+
+   // if (index > 0 && id >= arr[index - 1]) return false;
+   // if (index < arr.length - 1 && id >= arr[index + 1]) return false;
+   // return true;
+
+    
   });
- 
 
-   // myLibrary.splice(0, 1);
+ // displayBook();
+ const rmvBooks = document.querySelectorAll("#remove-bk");
+if (rmvBooks.clicked)
+
+  console.log(bkIndex2Del);
   
-  //}
+  myLibrary.splice(bkIndex2Del, 1);
 
-});
-*/
+  console.log(myLibrary);
+
+ }
+ */
 

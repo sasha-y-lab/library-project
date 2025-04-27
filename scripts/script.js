@@ -3,6 +3,7 @@
 //  all of your book objects should have a unique id, which can be 
 // generated using crypto.randomUUID()
 
+//let bookID = crypto.randomUUID();
 
 const myLibrary = [{title: "The Babysitters Club", author: "Unknown Author", pages: "233", read: "Not Read"}, {title: "Blues Brothers", author: "Unknown Author", pages: "1000", read: "Not Read"}, {title: "The Jungle Book", author: "Unknown Author", pages: "30", read: "Not Read"}];
 
@@ -15,13 +16,18 @@ function Book(title, author, pages, read) { // constructor
     this.author = author;
     this.pages = pages;
     this.read = read;
-    this.id = crypto.randomUUID();
+   // this.id = bookID;
    // this.createBook = function() {
    //   console.log(this.title + ",", this.author + ",", this.id + ",", this.pages + ",", this.read)
   //    // return this.createBook(); creates too much in a endless loop
   //  };
  // return this.createBook();
-  
+
+
+ 
+ 
+ //return bookID;
+
   }
 
   
@@ -80,6 +86,23 @@ console.log(myLibrary);
       
         const bookPlaceholder = document.createElement("div");
         bookPlaceholder.classList.add(".bk-placeholder");
+        bookPlaceholder.setAttribute("data-id", "");
+
+        bookPlaceholder.dataset.id = crypto.randomUUID(); //bookID
+        console.log(bookPlaceholder.dataset.id);
+        
+       // for (const key in bookPlaceholder.dataset.id) {
+       //   if (bookPlaceholder.dataset.id.hasOwnProperty(key)) {
+//console.log(bookPlaceholder.dataset.id.hasOwnProperty(key));
+
+          //  myLibrary[key] = bookPlaceholder.dataset.id[key];
+        //    console.log(myLibrary[key]);
+            
+        //  }
+        //  console.log(myLibrary[key]);
+       // }
+        
+        
 
        // bookPlaceholder.dataset.title;
       //  bookPlaceholder.dataset.author;
@@ -239,7 +262,7 @@ removeBkButton.setAttribute("width", "50px");
     e.preventDefault(); // We don't want to submit this fake form
 
     const formData = new FormData(formEl);
-    console.log(...formData);
+   // console.log(...formData);
 
 
    //console.log(formData.get('bk-title'));
@@ -304,10 +327,33 @@ displayBook(); // needed to show up
   }
 
 
- // function addBookNow(title, author, pages, read) {
+  /*
+ const deleteByIDs = document.querySelectorAll("[data-id]");
 
-  //  const book = new Book(title, author, pages, read);
- // myLibrary.push(book);
- // return book;
+  deleteByIDs.forEach(deleteByID => {
 
- // }
+const deleteBookNow = document.querySelector("#remove-bk");
+
+deleteBookNow.addEventListener("click", () => {
+
+  //for (let r = 0; r < myLibrary.length; r++) {
+  
+
+if (deleteBookNow.onclick) {
+
+  console.log(deleteBookNow.onclick);
+
+  myLibrary.splice(deleteByID, 1);
+  console.log(myLibrary);
+}
+
+  });
+ 
+
+   // myLibrary.splice(0, 1);
+  
+  //}
+
+});
+*/
+

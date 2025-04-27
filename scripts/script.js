@@ -106,6 +106,7 @@ console.log(myLibrary);
       
         const bookPlaceholder = document.createElement("div");
         bookPlaceholder.classList.add(".bk-placeholder");
+        bookPlaceholder.setAttribute("id", "book-placeholder");
         //const newBook = new Book(title, author, pages, read, id);
 
       
@@ -445,14 +446,14 @@ removeBkButton.setAttribute("width", "50px");
    const title = formData.get('bk-title');
    const author = formData.get('bk-author');
    const pages = formData.get('bk-pgs');
-   const read = formData.get('bk-read');
+   //const read = formData.get('bk-read');
 
     validateForm();
 
 
 
 // add new book to library
- addBookToLibrary(title, author, pages, read);
+ addBookToLibrary(title, author, pages);
 
  //console.log(addBookToLibrary(title, author, pages, read)); // this made it run twice
 //addBookNow(title, author, pages, read);
@@ -474,7 +475,7 @@ formEl.reset();
     let title = document.forms["form"]["bk-title"].value;
     let author = document.forms["form"]["bk-author"].value;
     let pages = document.forms["form"]["bk-pgs"].value;
-    let read = document.forms["form"]["bk-read"].value;
+    //let read = document.forms["form"]["bk-read"].value;
 
 
     if(pages != ""){
@@ -491,7 +492,7 @@ formEl.reset();
   //  }
 
 
-    if (title === "" || author === "" || pages === "" || read === "") {
+    if (title === "" || author === "" || pages === "") {
       alert("Field must be filled out");
       return false;
     }
@@ -527,6 +528,8 @@ readBtn.classList.add(".read-status");
 readBtn.textContent = "Read";
 */
 
+/*
+
 const updateReadBtns = document.querySelectorAll("#rd-status");
 
 
@@ -555,7 +558,7 @@ updateReadBtn.isRead = !updateReadBtn.isRead;
     updateReadBtn.classList.remove("truestate");
 
     return;
-} else if (new Book()) {
+} else if (Book) {
   updateReadBtn.classList.add("truestate");
   updateReadBtn.classList.remove("falsestate");
 return;
@@ -568,8 +571,40 @@ return;
 
 });
 
+*/
 
 
+
+// start again here
+
+const updateContainer = document.querySelector("#visible-books");
+//updateContainer.display = "none";
+
+// Attach listener to a stable parent element (like the body or a container div)
+updateContainer.addEventListener("click", function(e) {
+  // Check if the clicked element is a read status button
+  if (e.target && e.target.matches("#rd-status")) {
+    const btn = e.target;
+
+    // Initialize if not already defined
+    if (btn.isRead === undefined) {
+      btn.isRead = false;
+    }
+
+    // Toggle state
+    btn.isRead = !btn.isRead;
+
+    if (btn.isRead) {
+      btn.classList.add("truestate");
+      btn.classList.remove("falsestate");
+      //btn.textContent = "Read";
+    } else {
+      btn.classList.add("falsestate");
+      btn.classList.remove("truestate");
+     // btn.textContent = "Unread";
+    }
+  }
+});
 
 
 
@@ -579,7 +614,8 @@ return;
 
 //displayBook();
 
-  return this.isRead;
+ // return this.isRead;
 
 }
 Book.prototype.toggleReadStatus();
+

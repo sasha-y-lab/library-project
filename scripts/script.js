@@ -305,11 +305,11 @@ console.log(bookTxt);
         const removeBkButton = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         removeBkButton.setAttribute("id", "remove-bk");
           
-        removeBkButton.setAttribute("data-id", `${bookID}`);
+       // removeBkButton.setAttribute("data-id", `${bookID}`);
 
-        const rmvBookIDBtn = removeBkButton.dataset.id;
+        //const rmvBookIDBtn = removeBkButton.dataset.id;
 
-        console.log(rmvBookIDBtn);
+        //console.log(rmvBookIDBtn);
         
 
         
@@ -332,15 +332,19 @@ console.log(bookTxt);
 
   const index = [...Array.from(bookPlaceholder.parentElement.children)].indexOf(bookPlaceholder); //myLibrary.indexOf(allbookCards) = -1; // allbookCards.length = 0
 
-  console.log(index); // - 1 for rmvBookIDBtn & bookPlaceholder & allbookCards
+  console.log(index); // is showing each clicked book card now // - 1 for rmvBookIDBtn & bookPlaceholder & allbookCards
+
+//console.log(index.id); // doesn't work
+  //const bookIndex = [...Array.from(bkIndex2Del)].indexOf(bkIndex2Del);
+
+  //console.log(bookIndex); // no still - 1
+
+  if (bookID === bkIndex2Del) {
+
+  myLibrary.splice(index, 1); // works, deletes the active bookcard
 
 
-  //if (index === -1 && rmvBookIDBtn === bookID) {
-
-  //myLibrary.splice(index, 1);
-
-
-//});
+}
           
 
          

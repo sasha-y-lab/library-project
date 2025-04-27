@@ -18,6 +18,7 @@ function Book(title, author, pages, read) { // constructor
     this.title = title;
     this.author = author;
     this.pages = pages;
+    this.isRead = false;
     this.read = read;
     this.id = crypto.randomUUID();
    // this.id = bookID;
@@ -27,6 +28,8 @@ function Book(title, author, pages, read) { // constructor
   //  };
  // return this.createBook();
  
+ //this.isRead = false; // iniital state
+
  // id = this.id;
 
  //return id;
@@ -264,10 +267,29 @@ Object.getPrototypeOf(Book.prototype); // returns BookIdent.prototype
         bkPgs.textContent = "Pages: " + myLibrary[i].pages;
         bookTxt.appendChild(bkPgs);
 
+        /*
         const bkRead = document.createElement("p");
        bkRead.classList.add("bk-read");
-        bkRead.textContent = "Read: " + myLibrary[i].read;
+       // bkRead.textContent = "Read: " + myLibrary[i].read;
+       bkRead.textContent = "";
         bookTxt.appendChild(bkRead);
+        */
+
+        const readBtn = document.createElement("button");
+        readBtn.classList.add("falsestate");
+        readBtn.setAttribute("id", "rd-status");
+        readBtn.textContent = "Read";
+        readBtn.setAttribute("data-read", "isRead");
+        //readBtn.style.backgroundColor = "transparent";
+        //readBtn.style.color = "#2B303A";
+        //readBtn.style.border = "thin solid #B53434";
+
+       // readBtn.addEventListener("click", (e) => {
+
+
+       // });
+
+        bookTxt.appendChild(readBtn);
 
 
 console.log(bookTxt);
@@ -349,111 +371,6 @@ console.log(bookTxt);
 
          
 
-
-     // for (k = 0; k < myLibrary.length - 1; k++) {
-/*
-        const bookValues = myLibrary.filter(function (el) {
-         
-         console.log(el.id); // lists all book IDs
-          return el.id; //= bkIndex2Del //&&
-                // el.sqft >= 500 &&
-                 //el.num_of_beds >=2 &&
-                // el.num_of_baths >= 2.5;
-        });
-
-        console.log(bookValues); // prints array
-        console.log(bookValues.bkIndex2Del);
-
-       let indexOfBook = bookValues.length;
-
-        console.log(indexOfBook);
-        */
-
-//}
-
-
-          // if (index !== -1) {
-
-          //  myLibrary.splice(index, 1);
-           
-         //  }
-          
-
-          
-
-         //if bookplaceholder is selected itself, remove the corresponding id
-
-         
-         
-
-          
-         
-                  
-       
-
-        
-          
-
-       // book.focus({ focusVisible: false });
-
-        
-
-         
-
-            
-          
-
-
-
-/*
-         book.addEventListener('focus', () => {
-          console.log('Element received focus');
-
-           console.log(bkIndex2Del);
-           if (bkIndex2Del === bookID) {
-
-            myLibrary.splice(bkIndex2Del, 1);
-          }
-
-        }); // focus listener
-*/
-      
-    
-
-          
-        
-
-         // const bkIndex2Del = myLibrary.findIndex(addBookToLibrary, title);
-
-        // myLibrary.findIndex((value) => value () { 
-          
-
-        // });
-
-         
-
-        
-
-       // let indexBk = myLibrary.indexOf(BookIdent.prototype.bind(bookID)); //BookIdent()
-        //console.log(Book.prototype.bind(title)); //BookIdent()
-
-
-        //console.log(indexBk);
-
-        /*
-        myLibrary.forEach((value) => {
-          let bookID = value.id;
-
-          console.log(bookID);
-
-          if (bkIndex2Del === bookID) {
-
-            myLibrary.splice(bkIndex2Del, 1);
-          }
-        });
-
-        */
-
         
 
          
@@ -506,52 +423,12 @@ removeBkButton.setAttribute("width", "50px");
 
  const popUp = document.querySelector("#popup");
 
- /* 
  
- const addBkButtonUpdate = document.querySelectorAll("#add-bk");
-
-  addBkButtonUpdate.forEach(addbutton => {
-
-    addbutton.addEventListener("click", () => {
-
-        dialog.showModal();
-
-
-  
-    });
-
-  });
-*/
- 
-/*
-function click2Add() {
-
-  dialog.showModal();
-
-}
-  */
 
 
   const formEl = document.querySelector(".form");
  let inputEl = popUp.querySelectorAll("input");
-  //const title = document.getElementById("bk-title").value;
- // const author = document.getElementById("bk-author").value;
-  //const pages = document.getElementById("bk-pgs").value;
-  //const read = document.getElementById("bk-read").value;
-
   
-
-
-//  dialog.addEventListener("close", (e) => {
-  //  formEl.value =
-  //    dialog.returnValue === "default"
- //       ? "No return value."
- //      : `ReturnValue: ${dialog.returnValue}.`; // Have to check for "default" rather than empty string
- // });
-
-
-  //const confirmBtn = document.getElementById("#submit"); // probably wasn't working as only a form can have a submit event listener
-
   formEl.addEventListener('submit', (e) => {
 
     e.preventDefault(); // We don't want to submit this fake form
@@ -623,13 +500,86 @@ formEl.reset();
 
 
  
- //function deleteBook () {
+ // Add a button on each book’s display to change its read status.
+// To facilitate this you will want to create Book prototype function
+// that toggles a book instance’s read status.
+
+
+
+Book.prototype.toggleReadStatus = function () {
+
+//const updatedBookPlaceholder = document.querySelectorAll(".bk-placeholder");
+
+//const bkRead = document.querySelectorAll(".bk-read");
+//bkRead.textContent = "";
+
+//this.isRead = false;
+
+//this.isRead = !this.isRead;
+
+
+
+
+
+/*
+const readBtn = document.createElement("button");
+readBtn.classList.add(".read-status");
+readBtn.textContent = "Read";
+*/
+
+const updateReadBtns = document.querySelectorAll("#rd-status");
+
+
+updateReadBtns.forEach(updateReadBtn => {
+
+  updateReadBtn.isRead = false;
+
+updateReadBtn.addEventListener("click", (e) => {
+console.log(e.target);
+
+updateReadBtn.isRead = !updateReadBtn.isRead;
+
+
+  //let falseState = updateReadBtns.className = "falsestate";
+ // let trueState = updateReadBtns.className = "truestate";
+ 
+  if (updateReadBtn.isRead) {
+
+    updateReadBtn.classList.add("truestate");
+    updateReadBtn.classList.remove("falsestate");
+  return;
+  }
+   else if (!updateReadBtn.isRead) {
+
+    updateReadBtn.classList.add("falsestate");
+    updateReadBtn.classList.remove("truestate");
+
+    return;
+} else if (new Book()) {
+  updateReadBtn.classList.add("truestate");
+  updateReadBtn.classList.remove("falsestate");
+return;
+} else {
+  return;
+}
+
+
+});
+
+});
+
+
+
+
+
+
+
 
   
-      //myLibrary.splice(bookID, 1);
 
+//displayBook();
 
+  return this.isRead;
 
-//}
-
-//deleteBook();
+}
+Book.prototype.toggleReadStatus();

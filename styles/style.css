@@ -56,6 +56,31 @@ padding-top: 50px;
     justify-content: center; */
 }
 
+#rd-status {
+    
+    padding: 8px;
+    width: 100px;
+    text-align: center;
+
+}
+
+#rd-status.truestate {
+    background-color: #B53434;
+    color: white;
+    border: none;
+
+}
+
+
+
+#rd-status.falsestate {
+
+    background-color: transparent;
+    color: #2B303A;
+    border: thin solid #B53434;
+}
+
+
 /*
 .bk-placeholder {
     display: grid;

@@ -9,7 +9,26 @@
 //let bookID = "";
 
 const myLibrary = [{title: "The Babysitters Club", author: "Unknown Author", pages: "233", read: "Not Read", id: `${crypto.randomUUID()}`}, {title: "Blues Brothers", author: "Unknown Author", pages: "1000", read: "Not Read", id: `${crypto.randomUUID()}`}, {title: "The Jungle Book", author: "Unknown Author", pages: "30", read: "Not Read", id: `${crypto.randomUUID()}`}];
+// refactor all code with constructors to use class instead of plain constructors.
 
+
+class Book {
+  // class methods
+  constructor(title, author, pages, read) { 
+    
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.isRead = false;
+    this.read = read;
+    this.id = crypto.randomUUID();
+
+   }
+  
+  
+}
+
+/*
 function Book(title, author, pages, read) { // constructor
     if (!new.target) {
       throw Error("You must use the 'new' operator to call the constructor");
@@ -36,6 +55,7 @@ function Book(title, author, pages, read) { // constructor
 
   }
   
+  */
   
   // create book prototype
 /*
@@ -57,6 +77,7 @@ function Book(title, author, pages, read) { // constructor
 // Then, add a separate function to the script (not inside the constructor) 
 // that can take some arguments, create a book from those arguments, and store 
 // the new book object into an array.
+
 
 function addBookToLibrary(title, author, pages, read) {
     // take params, create a book then store it in the array

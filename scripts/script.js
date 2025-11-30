@@ -79,6 +79,8 @@ function Book(title, author, pages, read) { // constructor
 // the new book object into an array.
 
 
+
+
 function addBookToLibrary(title, author, pages, read) {
     // take params, create a book then store it in the array
 
@@ -284,6 +286,8 @@ Object.getPrototypeOf(Book.prototype); // returns BookIdent.prototype
         bkAuth.textContent = "Author: " + myLibrary[i].author;
         bookTxt.appendChild(bkAuth);
 
+ 
+
         const bkPgs = document.createElement("p");
        bkPgs.classList.add("bk-pages");
         bkPgs.textContent = "Pages: " + myLibrary[i].pages;
@@ -327,7 +331,15 @@ console.log(bookTxt);
         const addBkButton = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         addBkButton.setAttribute("id", "add-bk");
 
-        addBkButton.onclick = function () { dialog.showModal(); };
+       
+
+
+
+        addBkButton.onclick = function () { dialog.showModal(); 
+
+          
+
+        };
 
         addBkButton.setAttribute('viewBox', '0 0 24 24');
 
@@ -345,6 +357,11 @@ console.log(bookTxt);
             addBkButton.appendChild(addBkButtonPath);
 
         addDeleteButtons.appendChild(addBkButton);
+
+
+
+
+        
 
         const removeBkButton = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         removeBkButton.setAttribute("id", "remove-bk");
@@ -441,7 +458,8 @@ removeBkButton.setAttribute("width", "50px");
   // details for the new book and add it to the library.
 
  
- const dialog = document.querySelector("dialog");
+ 
+ /* const dialog = document.querySelector("dialog");
 
  const popUp = document.querySelector("#popup");
 
@@ -469,34 +487,232 @@ removeBkButton.setAttribute("width", "50px");
    const pages = formData.get('bk-pgs');
    //const read = formData.get('bk-read');
 
-    validateForm();
+   // names for fields 
+
+   let titleEl = document.forms["form"]["bk-title"].value;
+    let authorEl = document.forms["form"]["bk-author"].value;
+    let pagesEl = document.forms["form"]["bk-pgs"].value;
+
+// invailid author through javascript
+// invalid author
+// Attach invalid event listeners to each field
+[titleEl, authorEl, pagesEl].forEach(form => {
+  form.addEventListener('invalid', (e) => {
+    e.preventDefault(); // prevent default browser tooltip
+
+    // Set a custom message based on the field
+    if (form === titleEl) form.setCustomValidity("Please enter a book title!");
+    if (form === authorEl) form.setCustomValidity("Please enter the author's name!");
+    if (form === pagesEl) form.setCustomValidity("Please enter the number of pages!");
+
+    // Show alert (optional)
+    //alert(input.validationMessage);
+  });
+
+  // Clear the message when user types
+  input.addEventListener('input', () => {
+    input.setCustomValidity('');
+  });
+
+   if (formEl.checkValidity()) {
+    console.log("Form is valid!");
+    // Here you can call your functions
+    // addBookToLibrary(titleEl.value, authorEl.value, pagesEl.value);
+addBookToLibrary(title.value, author.value, pages.value);
+
+    formEl.reset();
+
+    displayBook();
+
+    dialog.close();
+  } else {
+    console.log("Form is invalid, first invalid input will trigger alert");
+    formEl.reportValidity(); // optional, forces showing validation messages
+  }
+
+});
+
+*/
+
+
+// trying again
+
+const dialog = document.querySelector("dialog");
+
+ const popUp = document.querySelector("#popup");
+
+ 
+
+
+  const formEl = document.querySelector(".form");
+
+
+  // trying again
+
+  const form = document.querySelector(".form");
+
+const titleInput  = document.querySelector("#bk-title");
+const authorInput = document.querySelector("#bk-author");
+const pagesInput  = document.querySelector("#bk-pgs");
+
+// Attach validation BEFORE submit is triggered
+function attachValidation(input, message) {
+  input.addEventListener("invalid", (e) => {
+    e.target.setCustomValidity(message);
+  });
+
+  input.addEventListener("input", (e) => {
+    e.target.setCustomValidity("");
+  });
+}
+
+// Add rules
+attachValidation(titleInput,  "Please enter a book title!");
+attachValidation(authorInput, "Please enter the author's name!");
+attachValidation(pagesInput,  "Please enter the number of pages!");
+
+// Submit handler
+form.addEventListener("submit", (e) => {
+  if (!form.checkValidity()) {
+    e.preventDefault();
+    form.reportValidity();   // Chrome will show YOUR messages now
+    return;
+  }
+
+  // If valid → continue
+  console.log("Form is valid");
+
+
+  /*
+  // Get input elements
+  const titleInput = formEl.querySelector('input[name="bk-title"]');
+  const authorInput = formEl.querySelector('input[name="bk-author"]');
+  const pagesInput = formEl.querySelector('input[name="bk-pgs"]');
+
+  // Open popup
+  dialog.addEventListener('click', () => dialog.showModal());
+
+  // Clear custom messages when typing
+  [titleInput, authorInput, pagesInput].forEach(input => {
+    input.addEventListener('input', () => input.setCustomValidity(''));
+  });
+
+  // Form submission
+  formEl.addEventListener('submit', (e) => {
+    // Set custom messages
+    if (!titleInput.value.trim()) titleInput.setCustomValidity("Please enter a book title!");
+    if (!authorInput.value.trim()) authorInput.setCustomValidity("Please enter the author's name!");
+    if (!pagesInput.value.trim()) pagesInput.setCustomValidity("Please enter the number of pages!");
+
+    // Show tooltip if invalid
+    if (!formEl.checkValidity()) {
+      e.preventDefault(); // stop submission
+      formEl.reportValidity(); // shows tooltip
+      return;
+    }
+
+    e.preventDefault();
+    const formData = new FormData(formEl);
+    const title = formData.get('bk-title');
+    const author = formData.get('bk-author');
+    const pages = formData.get('bk-pgs');
+
+
+    */
+    // Your functions
+    addBookToLibrary(title, author, pages);
+    displayBook();
+
+    formEl.reset();
+    dialog.close();
+  });
+
+
+
+// starting js validation
+/*
+const dialog = document.querySelector("dialog");
+const formEl = document.querySelector(".form");
+
+// Get the actual input elements
+const titleInput = formEl.querySelector('input[name="bk-title"]');
+const authorInput = formEl.querySelector('input[name="bk-author"]');
+const pagesInput = formEl.querySelector('input[name="bk-pgs"]');
+
+// Attach invalid event listeners to each input
+[titleInput, authorInput, pagesInput].forEach(input => {
+  input.addEventListener('invalid', (e) => {
+    e.preventDefault(); // prevent default browser tooltip
+
+    if (input === titleInput) input.setCustomValidity("Please enter a book title!");
+    if (input === authorInput) input.setCustomValidity("Please enter the author's name!");
+    if (input === pagesInput) input.setCustomValidity("Please enter the number of pages!");
+
+    // Optional: show an alert
+    alert(input.validationMessage);
+  });
+
+  // Clear the custom validity when user types
+  input.addEventListener('input', () => {
+    input.setCustomValidity('');
+  });
+});
+
+formEl.addEventListener('submit', (e) => {
+  e.preventDefault(); // prevent default form submission
+
+  if (formEl.checkValidity()) {
+    // All fields are valid, get the values
+    const formData = new FormData(formEl);
+    const title = formData.get('bk-title');
+    const author = formData.get('bk-author');
+    const pages = formData.get('bk-pgs');
+
+    // Add the book
+    addBookToLibrary(title, author, pages);
+    displayBook();
+
+    formEl.reset();
+    dialog.close();
+  } else {
+    // Show the first invalid input message
+    formEl.reportValidity();
+  }
+});
+
+*/ // working but no popup tooltip
+
+    //validateForm();
 
 
 
 // add new book to library
- addBookToLibrary(title, author, pages);
+ //addBookToLibrary(title, author, pages);
 
  //console.log(addBookToLibrary(title, author, pages, read)); // this made it run twice
 //addBookNow(title, author, pages, read);
 
 // refesh display to show book
-displayBook(); // needed to show up
+//displayBook(); // needed to show up
 
 //reset form after submission
-formEl.reset();
+//formEl.reset();
 
 
-    dialog.close(); // Have to send the form value here.
+   // dialog.close(); // Have to send the form value here.
 
 
-  });
+  // });
 
 
+ /*
   function validateForm() {
     let title = document.forms["form"]["bk-title"].value;
     let author = document.forms["form"]["bk-author"].value;
     let pages = document.forms["form"]["bk-pgs"].value;
     //let read = document.forms["form"]["bk-read"].value;
+
+
 
 
     if(pages != ""){
@@ -513,13 +729,14 @@ formEl.reset();
   //  }
 
 
-    if (title === "" || author === "" || pages === "") {
-      alert("Field must be filled out");
-      return false;
-    }
+ // if (title === "" || pages === "") {
+    //if (title === "" || author === "" || pages === "") {
+   //   alert("Field must be filled out");
+   //   return false;
+   // }
     return true;
   }
-
+*/
 
  
  // Add a button on each book’s display to change its read status.
